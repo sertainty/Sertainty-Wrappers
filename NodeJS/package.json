@@ -1,0 +1,32 @@
+{
+  "name": "sertainty-sdk",
+  "version": "1.0.6",
+  "description": "Sertainty NodeJS SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://deepdatainsight@github.com/deepdatainsight/sertainty-sdk.git"
+  },
+  "keywords": [
+    "sertainty",
+    "sdk",
+    "nodejs"
+  ],
+  "author": "aruna@deepdatainsight.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepdatainsight/sertainty-node/issues"
+  },
+  "homepage": "https://github.com/deepdatainsight/sertainty-node#readme",
+  "dependencies": {
+    "@arunwij/read-bytes": "^1.0.4",
+    "bindings": "^1.5.0",
+    "ffi": "^2.3.0",
+    "readline-sync": "^1.4.9",
+    "ref": "^1.3.5",
+    "ref-array": "^1.2.0"
+  }
+}
