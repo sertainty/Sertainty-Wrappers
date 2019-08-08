@@ -267,5 +267,3 @@ if (core.uxpsys_hasError(callStatusHandle)) {
 ## API reference
 
 See the full API reference [here](). 
-
-## [CONTACT US](https://www.sertainty.com/)
