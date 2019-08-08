@@ -12,22 +12,12 @@ This is the official C# SDK for Sertainty; Which provides functionality for gene
 
 #### Installing
 
-- __Using package manager__
-    Install-Package Sertainty-SDK -Version 1.0.0
-
--  __Using .NET CLI__
-    dotnet add package Sertainty-SDK --version 1.0.0
-
--  __Set `SERTAINTY_HOME` environment variable__
-    you can set the `SERTAINTY_HOME` with Command Prompt (run as Administrator).
-    - `setx SERTAINTY_HOME /M "path\to\sertainty"`
-    - `ex: setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
+-  __Install Sertainty SDK__
+    - `Install-Package Sertainty-SDK -Version 1.0.0` or
+    - `dotnet add package Sertainty-SDK --version 1.0.0`
 
 ### Usage
-```csharp
-
-```
-
+[See the Sample Application]
 
 ## API reference
 
