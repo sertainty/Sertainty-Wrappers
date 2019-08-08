@@ -12,27 +12,20 @@ This is the official C# SDK for Sertainty; Which provides functionality for gene
 
 #### Installing
 
-- __Prerequisites__
-  we use [node-gyp](https://github.com/nodejs/node-gyp) for buiding necessary addons: 
-    -  install [Python](https://www.python.org/downloads/release/python-272/) 2.x.x
-    - `npm install -g node-gyp`
-    - `npm install -g --production windows-build-tools`
+- __Using package manager__
+    Install-Package Sertainty-SDK -Version 1.0.0
 
--  __Install Sertainty SDK__
-    - `npm install --save sertainty-sdk`
+-  __Using .NET CLI__
+    dotnet add package Sertainty-SDK --version 1.0.0
 
 -  __Set `SERTAINTY_HOME` environment variable__
-  
     you can set the `SERTAINTY_HOME` with Command Prompt (run as Administrator).
     - `setx SERTAINTY_HOME /M "path\to\sertainty"`
     - `ex: setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
 
 ### Usage
-```javascript
-/* import the core module */
-const { core } = require("sertainty-sdk");
-/* use core functions */
-const bufferHandle = core.uxpba_newHandle();
+```csharp
+
 ```
 
 
