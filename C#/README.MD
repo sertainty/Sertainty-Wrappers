@@ -17,7 +17,7 @@ This is the official C# SDK for Sertainty; Which provides functionality for gene
     - `dotnet add package Sertainty-SDK --version 1.0.0`
 
 ### Usage
-[See the Sample Application]
+[See the Sample Application](https://github.com/sertainty/Sertainty-Wrappers/blob/master/C%23/sampleProgram.cs)
 
 ## API reference
 
