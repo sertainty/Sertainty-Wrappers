@@ -1,6 +1,6 @@
 {
-  "name": "sertainty-sdk",
-  "version": "1.0.6",
+  "name": "@sertainty-eng/sertainty-sdk",
+  "version": "1.0.0",
   "description": "Sertainty NodeJS SDK",
   "main": "index.js",
   "scripts": {

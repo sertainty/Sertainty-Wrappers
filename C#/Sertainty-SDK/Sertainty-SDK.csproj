@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Sertainty_SDK</RootNamespace>
+    <Authors>Aruna Wijerathna</Authors>
+    <Description>.Net wrapper for Sertainty SDK.</Description>
+    <Company>Deep Data Insight</Company>
+    <RepositoryType></RepositoryType>
+    <PackageTags>Sertainty SDK</PackageTags>
+  </PropertyGroup>
+
+</Project>
