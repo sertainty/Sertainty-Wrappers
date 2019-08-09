@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj": {}
+  },
+  "projects": {
+    "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj": {
+      "version": "1.0.2",
+      "restore": {
+        "projectUniqueName": "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj",
+        "projectName": "SertaintySDK",
+        "projectPath": "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj",
+        "packagesPath": "/Users/mymac/.nuget/packages/",
+        "outputPath": "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/mymac/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

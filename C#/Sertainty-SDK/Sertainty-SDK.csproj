@@ -8,6 +8,9 @@
     <Company>Deep Data Insight</Company>
     <RepositoryType></RepositoryType>
     <PackageTags>Sertainty SDK</PackageTags>
+    <Version>1.0.2</Version>
+    <PackageId>SertaintySDK</PackageId>
+    <PackageVersion>1.0.2</PackageVersion>
   </PropertyGroup>
 
 </Project>
