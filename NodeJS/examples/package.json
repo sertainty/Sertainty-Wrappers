@@ -1,0 +1,23 @@
+{
+  "name": "sertainty-examples",
+  "version": "1.0.0",
+  "description": "Example app of Sertainty SDK ",
+  "main": "sampleApp.js",
+  "scripts": {
+    "start": "npm run clean && node app.js"
+  },
+  "keywords": [
+    "sertainty",
+    "example",
+    "nodejs"
+  ],
+  "author": "aruna@deepdatainsight.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepdatainsight/sertainty-examples/issues"
+  },
+  "dependencies": {
+    "@sertainty-eng/sertainty-sdk": "^1.0.0",
+    "readline-sync": "^1.4.10"
+  }
+}
