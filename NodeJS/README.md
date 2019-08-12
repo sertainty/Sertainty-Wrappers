@@ -27,9 +27,19 @@ Currently we support Windows only.
 
 -  __Set `SERTAINTY_HOME` environment variable__
   
+    We reference necessary files from Sertainty Tools hence you need to set the install location of the Seratainty Tools using system environmental variable.
+
     you can set the `SERTAINTY_HOME` with Command Prompt (run as Administrator).
-    - `setx SERTAINTY_HOME /M "path\to\sertainty"`
-    - `ex: setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
+    
+    `setx SERTAINTY_HOME /M "path\to\sertainty"`
+  
+    Example: `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"`We reference necessary files from Sertainty Tools hence you need to set the install location of the Seratainty Tools using system environmental variable.
+
+    you can set the `SERTAINTY_HOME` with Command Prompt (run as Administrator).
+    
+    `setx SERTAINTY_HOME /M "path\to\sertainty"`
+  
+    Example: `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
 
 ### Usage
 ```javascript
