@@ -8,7 +8,7 @@
 - [API reference](#api-reference)
 
 ## Getting Started with Sertainty
-This is the official NodeJS SDK for Sertainty; Which provides functionality for generating ID files and protect data and control access for specific user/time/device/number of times to access.
+This is the official NodeJS SDK for Sertainty; Which provides functionality for generating ID files and protect data and control access.
 
 #### Installing
 Currently we support Windows only.
