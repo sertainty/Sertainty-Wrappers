@@ -9,35 +9,54 @@
 - [API reference](#api-reference)
 
 ## Getting Started with Sertainty
-This is the official NodeJS SDK for Sertainty; Which provides functionality for generating ID files and protect data and control access for specific user/time/device/number of times to access.
+This is the official C# SDK for Sertainty; Which provides functionality for generating ID files and protect data and control access for specific user/time/device/number of times to access.
 
 #### Installing
 
 - __Prerequisites__
-  we use [node-gyp](https://github.com/nodejs/node-gyp) for buiding necessary addons: 
-    -  install Sertainty Tools. 
-    -  install [Python](https://www.python.org/downloads/release/python-272/) 2.x.x
-    - `npm install -g node-gyp`
-    - `npm install -g --production windows-build-tools`
+  
+  Install Sertainty Tools for Windows - [Contact US](https://www.sertainty.com/)
 
 -  __Install Sertainty SDK__
-    - `npm install --save sertainty-sdk`
+
+    You can install [SertaintySDK](https://www.nuget.org/packages/SertaintySDK/) using one of these methods. 
+
+    1. From Visual Studio 
+       - Right click on your Visual Studio project in the Solution Explorer. 
+       - Select Add -> Add Nuget Packages 
+       - Search "SertaintySDK" and Add package for the project 
+
+    2. From Package Manager 
+   
+       `Install-Package SertaintySDK -Version 1.0.2`
+
+    3. From .Net CLI
+
+       `dotnet add package SertaintySDK --version 1.0.2`
+
+    4. Add Package Reference (For projects that support PackageReference)
+
+       `<PackageReference Include="SertaintySDK" Version="1.0.2" />`
+
+    
 
 -  __Set `SERTAINTY_HOME` environment variable__
   
+    We reference necessary files from Sertainty Tools hence you need to set the install location of the Seratainty Tools using system environmental variable.
+
     you can set the `SERTAINTY_HOME` with Command Prompt (run as Administrator).
-    - `setx SERTAINTY_HOME /M "path\to\sertainty"`
-    - `ex: setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
+    
+    `setx SERTAINTY_HOME /M "path\to\sertainty"`
+  
+    Example: `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
 
 ### License
-Install Sertainty Tools for installing the Sertainty License. 
+You will be able to Install the License with Sertainty Tools or try it free.
 
 ### Usage
-```javascript
-/* import the core module */
-const { core } = require("sertainty-sdk");
-/* use core functions */
-const bufferHandle = core.uxpba_newHandle();
+```csharp
+/* reference the sdk */
+using SertaintySDK;
 ```
 
 ### Tutorial
@@ -57,60 +76,63 @@ Create sample project and import Sertainty. (Please refer [Usage](#Usage) sectio
 
 See the full example [here.](https://gist.github.com/arunwij/867f49a8ceea04e9e0fed352745dfc4c)
 
+Get the sample files we are using for the tutorial [here.]()
+
 #### Initialize Sertainty 
-```javascript
-const bufferHandle = core.uxpba_newHandle();
+```csharp
+IntPtr bufferHandle = SertaintyCore.uxpba_newHandle();
 
-const licenseFile = "sertainty.lic";
-const appKey = "SertaintyONE";
-const logPrefix = "sertainty-tutorial";
-const logVersion = "1.0";
-const args = [];
+string licenseFile = "sertainty.lic";
+string appKey = "SertaintyONE";
+string logPrefix = "sertainty-tutorial";
+string logVersion = "1.0";
 
-const status = core.uxpsys_initLibrary(bufferHandle, args.length, args, licenceFile, appKey, logPrefix, logVersion);
+long status = SertaintyCore.uxpsys_initLibrary(bufferHandle, args.LongLength, args, licenseFile, appKey, logPrefix, logVersion);
 
 /* make sure if Sertainty initialized correctly */
+if (status == 0)
+{
+  errorstr = SertaintyCore.uxpba_getData(bufferHandle).ReadString();
+  Console.WriteLine("Error initializing environment: {0}", errorstr);
+}
 
-if (status == 0) {
-  const errHandle = core.uxpba_getData(bufferHandle);
-  const errText = ref.readCString(errHandle);
-  console.error(`Error initializing the Environment: ${errText}`);
-} 
-
-console.log("Sertainty initialized successfully");
+Console.WriteLine("Sertainty initialized successfully");
 ```
 
 #### Generate an ID file
 To generate ID (.iic) file, we need a XML version of ID spec which can generate from Sertainty application. 
-```javascript
+```csharp
 /* XML id file generated from the sertainty application */
-const idXmlSpec = "sampleid.xml";
-const idFileSpec = "sampleid.iic";
+string idXmlSpec = "sampleid.xml";
+string idFileSpec = "sampleid.iic";
 
-const callStausHandle = core.uxpsys_newCallStatusHandle();
-core.uxpsys_fileReadAll(callStausHandle, idXmlSpec, bufferHandle);
+IntPtr callStatusHandle = SertaintyCore.uxpsys_newCallStatusHandle();
+
+SertaintyCore.uxpsys_fileReadAll(callStatusHandle, idXmlSpec, bufferHandle);
 
 /* check errors in last `uxpsys_fileReadAll` function call */
-if (core.uxpsys_hasError(callStausHandle)) {
-  const errHandle = core.uxpsys_getErrorMessage(callStausHandle);
-  const errText = ref.readCString(errHandle);
-  console.error(`Reading ${idXmlSpec}`);
-  
-} else {
+if (SertaintyCore.uxpsys_hasError(callStatusHandle))
+{
+    IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(callStatusHandle);
+    string errMsg = errMsgPtr.ReadString();
+    Console.WriteLine("Error reading ID: {0}", errMsg);
+} 
+else 
+{
   /* Generate ID file */
+  Console.WriteLine("{0} read", idXmlSpec);
+  string doc = SertaintyCore.uxpba_getData(bufferHandle).ReadString();
+
+  SertaintyCore.uxpid_publishToFile(callStatusHandle, idFileSpec, doc, 1);
   
-  console.log(`Read ${idXmlSpec}: done`);
-  const dataHandle = core.uxpba_getData(buffer);
-  const doc = ref.readCString(dataHandle);
-  core.uxpid_publishToFile(callStatusHandle, idFileSpec, doc, 1);
-  
-  if (core.uxpsys_hasError(callStatusHandle)) {
-      const errHandle = core.uxpsys_getErrorMessage(callStatusHandle);
-      const errText = ref.readCString(errHandle);
-      console.error(`Error creating ID file: ${errText}`);
+  if (SertaintyCore.uxpsys_hasError(callStatusHandle))
+  {
+      IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(callStatusHandle);
+      string errMsg = errMsgPtr.ReadString();
+      Console.WriteLine("Error creating ID: {0}", errMsg);
   }
-  
-  console.log("${idFileSpec} created");
+
+  Console.WriteLine("{0} created", idFileSpec);
 }
 ```
 
@@ -120,152 +142,155 @@ We'll create a file with .uxp extension that can encapsulate data in encrypted m
 - ID(.iic) file
 
 ##### Create UXP file
-```javascript
+```csharp
 /* a file to be encrypted */
-const dataPdfSpec = "data.pdf";
+string dataPdfSpec = "data.pdf";
 /* output file name */
-const uxpFileSpec = "sample.uxp";
+string uxpFileSpec = "sample.uxp";
 
 
-const appHandle = core.uxpfile_newHandle();
-core.uxpfile_openNewFile(appHandle, uxpFileSpec, idFileSpec, 3, 1, 0);
+IntPtr appHandle = SertaintyCore.uxpfile_newHandle();
+SertaintyCore.uxpfile_openNewFile(appHandle, uxpFileSpec, idFileSpec, 3, 1, 0);
 
-if (core.uxpsys_hasError(appHandle)) {
-  const errHandle = core.uxpsys_getErrorMessage(appHandle);
-  const errText = ref.readCString(errMsgPtr);
-  console.log("Error opening file ${errText}");
-  
-} else {
-  console.log("${uxpFileSpec} created");
-}
+
+if (SertaintyCore.uxpsys_hasError(appHandle))
+{
+    IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(appHandle);
+    string errMsg = errMsgPtr.ReadString();
+    Console.WriteLine("Error creating Data: {0}", errMsg);
+} 
+
+Console.WriteLine("{0} created", uxpFileSpec);
 ```
 
 ##### Protect data
 ```csharp
-core.uxpfile_addVirtualFromFile(appHandle, "data.pdf", dataPdfSpec, -1, -1, 8);
+SertaintyCore.uxpfile_addVirtualFromFile(appHandle, "data.pdf", dataPdfSpec, -1, -1, 8);
   
-if (core.uxpsys_hasError(appHandle)) {
-    const errHandle = core.uxpsys_getErrorMessage(appHandle);
-    const errText = ref.readCString(errHandle);
-    console.error("Error creating virtual file: ${errText}");
+if (SertaintyCore.uxpsys_hasError(appHandle))
+{
+    IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(appHandle);
+    string errMsg = errMsgPtr.ReadString();
+    Console.WriteLine("Error creating virtual file: {0}", errMsg);
 }
 
-console.log("File has been Encrypted");
+Console.WriteLine("File has been Encrypted");
 ```
 
 #### Authorize UXP
 
 ##### Handle authorization
-```javascript
-core.uxpfile_openFile(appHandle, uxpFileSpec, Mode.ReadOnly);
+```csharp
+SertaintyCore.uxpfile_openFile(appHandle, uxpFileSpec, Mode.ReadOnly);
 
-let done = false;
-let authorized = false;
-let status = null;
+if (SertaintyCore.uxpsys_hasError(appHandle))
+{
+    IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(appHandle);
+    string errMsg = errMsgPtr.ReadString();
+    Console.WriteLine("Error opening UXP: {0}", errMsg);
+}
 
-while (!done) {
-// get authentication status
-status = core.uxpfile_authenticate(appHandle);
+bool done = false;
+bool authorized = false;
+AuthorizationStatus status;
 
-    switch (status) {
-        case AUTHORIZATION_STATUS.Authorized: {
-            console.log("You're authorized");
+while (!done)
+{
+    status = SertaintyCore.uxpfile_authenticate(appHandle);
+
+    switch (status)
+    {
+        case AuthorizationStatus.Authorized:
+            Console.WriteLine("You're authorized");
             done = true;
             authorized = true;
             break;
-        }
-
-        case AUTHORIZATION_STATUS.NotAuthorized: {
-            console.log("You're not authorized");
+        case AuthorizationStatus.NotAuthorized:
+            Console.WriteLine("You're not authorized");
             authorized = false;
             done = true;
             break;
-        }
-
-        case AUTHORIZATION_STATUS.Challenged: {
-            // get remaining challange count
-            const challangeCount = core.uxpfile_getChallengeCount(appHandle);
-            for (let i = 0; i < challangeCount; i++) {
-                const challangePtr = core.uxpfile_getChallenge(appHandle,i);
-                // print the challange question and wait for the user response and save the response
-                getResponse(challangePtr);
-                core.uxpfile_addResponse(appHandle, challangePtr);
-                core.uxpch_freeHandle(challangePtr);
+        case AuthorizationStatus.Challenged:
+            for (int i = 0; i < SertaintyCore.uxpfile_getChallengeCount(appHandle); i++)
+            {
+                IntPtr challengeHandle = SertaintyCore.uxpfile_getChallenge(appHandle, i);
+                getResponse(challengeHandle);
+                SertaintyCore.uxpfile_addResponse(appHandle, challengeHandle);
+                SertaintyCore.uxpch_freeHandle(challengeHandle);
             }
-          break;
-        }
-
-        default: {
-            console.log("Invalid authorization status");
             break;
-        }
+        default:
+            break;
     }
 }
 ```
 
 ##### Handle challange response
-```javascript
-function getResponse(challangeHandle) {
-    /* get question and start the timer */
-    const promptHandle = core.uxpba_newHandle();
-    core.uxpch_getPrompt(challengeHandle, promptHandle);
-    core.uxpch_startTimer(challengeHandle);
-    const dataHandle = core.uxpba_getData(promptHandle);
-    const question = ref.readCString(dataHandle);
-    
-    /* read user's answer from console */ 
-    const answer = readlineSync.question(`${question}? `);
-    const trimmedAnsewer = answer.trim();
-    
-    /* stop the timer and save the answer */
-    core.uxpch_endTimer(challengeHandle);
-    core.uxpch_setValueString(challengeHandle, trimmedAnsewer);
-    core.uxpba_freeHandle(promptHandle);
+```csharp
+private static void getResponse(IntPtr challengeHandle)
+{
+    IntPtr prompt = SertaintyCore.uxpba_newHandle();
+    SertaintyCore.uxpch_getPrompt(challengeHandle, prompt);
+    SertaintyCore.uxpch_startTimer(challengeHandle);
+
+    Console.WriteLine("{0}> ", SertaintyCore.uxpba_getData(prompt).ReadString());
+    string value = Console.ReadLine().TrimEnd('\r', '\n');
+
+    SertaintyCore.uxpch_endTimer(challengeHandle);
+    SertaintyCore.uxpch_setValueString(challengeHandle, value);
+
+    SertaintyCore.uxpba_freeHandle(prompt);
 }
 ```
 
 #### Read UXP file
-```javascript
+```csharp
 /* output file name */
-const copy1Spec = "copy1.pdf";
+string copy1Spec = "copy1.pdf";
 
-if (authorized) {
-  console.log(`Extracting ${dataPdfSpec} to ${copy2Spec}`);
-  const fileHandle = core.uxpfile_openVirtualFile(appHandle, dataPdfSpec, MODE.ReadOnly);
+if (authorized)
+{
+    Console.WriteLine("Extracting data.pdf to copy2.pdf");
 
-  if (core.uxpsys_hasError(appHandle)) {
-    const errText = getError(callStatus);
-    console.log(`penVirtualFile: ${errText}`);
-  } else {
+    fileHandle = SertaintyCore.uxpfile_openVirtualFile(appHandle, "data.pdf", Mode.ReadOnly);
 
-    const wstream = fs.createWriteStream(copy2Spec);
-
-    while (core.uxpfile_readVirtualFile(appHandle, fileHandle, buffer, 1000) > 0) {
-      const length = core.uxpba_getSize(buffer);
-      const dataPtr = core.uxpba_getData(buffer);
-      const data = readBytes(dataPtr, length);
-      wstream.write(data);
+    if (SertaintyCore.uxpsys_hasError(appHandle))
+    {
+        IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(appHandle);
+        string errMsg = errMsgPtr.ReadString();
+        Console.WriteLine("Error opening virtual file: {0}", errMsg);
     }
-    wstream.close();
-    core.uxpfile_closeVirtualFile(appHandle, fileHandle);
-  }
+    else
+    {
+        FileStream sw = new FileStream(copy2Spec, FileMode.Create);
+        while (SertaintyCore.uxpfile_readVirtualFile(appHandle, fileHandle, bufferHandle, 1000) > 0)
+        {
+            int len = (int)SertaintyCore.uxpba_getSize(bufferHandle);
+            byte[] data = SertaintyCore.uxpba_getData(bufferHandle).ReadBytes(len);
+            sw.Write(data, 0, len);
+        }
+        sw.Close();
+        SertaintyCore.uxpfile_closeVirtualFile(appHandle, fileHandle);
+
+    }
 }
 ```
 
 #### Handle Errors
-To check if there are any errors after each operation, we can use `uxpsys_hasError(IntPtr handle)` method. It requires a handle as an input parameter.  If the operation is file related, we need to pass a file handle, otherwies it will be a callStatusHandle. (Handle for getting status of an operation);
+To check if there are any errors after each operation, we can use `uxpsys_hasError(IntPtr handle)` method. It requires a handle as an input parameter.  If the operation is file related, we need to pass a file handle, otherwies it will be a callStatusHandle or other type of hanlde. (Handle for getting status of an operation);
 
-````javascript
+````csharp
 /* get call status handle */
 
-const callStatusHandle = core.uxpsys_newCallStatusHandle();
-core.uxpid_publishToFile(callstatus, idFileSpec, doc, 1);
+IntPtr callStatusHandle = SertaintyCore.uxpsys_newCallStatusHandle();
+SertaintyCore.uxpid_publishToFile(callStatusHandle, idFileSpec, doc, 1);
 
 /* handle errors */
-if (core.uxpsys_hasError(callStatusHandle)) {
-    const errHandle = core.uxpsys_getErrorMessage(callStatusHandle);
-    const errText = ref.readCString(errhandle);
-    console.error(`Error creating ID: ${errText}`);
+if (SertaintyCore.uxpsys_hasError(callStatusHandle)) 
+{
+    IntPtr errMsgPtr = SertaintyCore.uxpsys_getErrorMessage(callStatusHandle);
+    string errMsg = errMsgPtr.ReadString();
+    Console.WriteLine("Error creating ID: {0}", errMsg);
 }
 ````
 
