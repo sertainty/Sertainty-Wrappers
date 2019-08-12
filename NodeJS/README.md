@@ -66,7 +66,7 @@ Create sample project and import Sertainty. (Please refer [Usage](#Usage) sectio
 
 See the full example [here.](https://github.com/sertainty/Sertainty-Wrappers/blob/master/NodeJS/examples/sampleApp.js)
 
-Get the sample files we are using for the tutorial [here.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS/examples)
+Get the sample files we are using for the tutorial in [examples.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS/examples)
 
 #### Initialize Sertainty
 ```javascript
