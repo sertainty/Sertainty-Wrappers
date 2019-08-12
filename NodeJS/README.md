@@ -51,16 +51,16 @@ const bufferHandle = core.uxpba_newHandle();
 
 ### Tutorial
 We will guide you through how to use Sertainty in your project. You will learn,
-  - [Step 1: Initialize Sertainty](#Step-1:-Initialize-Sertainty)
-  - [Step 2: Generate an ID file](#Step-2:-Generate-an-ID-file)
-  - [Step 3: Protect file with UXP](#Step-3:-Protect-file-with-UXP)
-    - [Step 3.1: Create UXP file](#Step-3.1:-Create-UXP-file)
-    - [Step 3.2: Protect data](#Step-3.2:-Protect-data)
-  - [Step 4: Authorize UXP](#Step-4:-Authorize-UXP)
-    - [Step 4.1: Handle authorization](#Step-4.1:-Handle-authorization)
-    - [Step 4.2: Handle challange response](#Step-4.2:-Handle-challange-response)
-  - [Step 5: Read UXP file](#Step-5:-Read-UXP-file)
-  - [Step 6: Handle Errors](#Step-6:-Handle-Errors)
+  - [Step 1: Initialize Sertainty](#Initialize-Sertainty)
+  - [Step 2: Generate an ID file](#Generate-an-ID-file)
+  - [Step 3: Protect file with UXP](#Protect-file-with-UXP)
+    - [Step 3.1: Create UXP file](#Create-UXP-file)
+    - [Step 3.2: Protect data](#Protect-data)
+  - [Step 4: Authorize UXP](#Authorize-UXP)
+    - [Step 4.1: Handle authorization](#Handle-authorization)
+    - [Step 4.2: Handle challange response](#Handle-challange-response)
+  - [Step 5: Read UXP file](#Read-UXP-file)
+  - [Step 6: Handle Errors](#Handle-Errors)
 
 Create sample project and import Sertainty. (Please refer [Usage](#Usage) section)
 
@@ -68,7 +68,7 @@ See the full example [here.](https://github.com/sertainty/Sertainty-Wrappers/blo
 
 Get the sample files we are using for the tutorial [here.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS/examples)
 
-#### Step 1: Initialize Sertainty
+#### Initialize Sertainty
 ```javascript
 const bufferHandle = core.uxpba_newHandle();
 
@@ -91,7 +91,7 @@ if (status == 0) {
 console.log("Sertainty initialized successfully");
 ```
 
-#### Step 2: Generate an ID file
+#### Generate an ID file
 To generate ID (.iic) file, we need a XML version of ID spec which can generate from Sertainty application. 
 ```javascript
 /* XML id file generated from the sertainty application */
@@ -125,12 +125,12 @@ if (core.uxpsys_hasError(callStausHandle)) {
 }
 ```
 
-#### Step 3: Protect file with UXP
+#### Protect file with UXP
 We'll create a file with .uxp extension that can encapsulate data in encrypted mode. This function requires two main inputs,
 - Data(to be encrypted)
 - ID(.iic) file
 
-##### Step 3.1: Create UXP file
+##### Create UXP file
 ```javascript
 /* a file to be encrypted */
 const dataPdfSpec = "data.pdf";
@@ -151,7 +151,7 @@ if (core.uxpsys_hasError(appHandle)) {
 }
 ```
 
-##### Step 3.2: Protect data
+##### Protect data
 ```csharp
 core.uxpfile_addVirtualFromFile(appHandle, "data.pdf", dataPdfSpec, -1, -1, 8);
   
@@ -164,9 +164,9 @@ if (core.uxpsys_hasError(appHandle)) {
 console.log("File has been Encrypted");
 ```
 
-#### Step 4: Authorize UXP
+#### Authorize UXP
 
-##### Step 4.1: Handle authorization
+##### Handle authorization
 ```javascript
 core.uxpfile_openFile(appHandle, uxpFileSpec, Mode.ReadOnly);
 
@@ -214,7 +214,7 @@ status = core.uxpfile_authenticate(appHandle);
 }
 ```
 
-##### Step 4.2: Handle challange response
+##### Handle challange response
 ```javascript
 function getResponse(challangeHandle) {
     /* get question and start the timer */
@@ -235,7 +235,7 @@ function getResponse(challangeHandle) {
 }
 ```
 
-#### Step 5: Read UXP file
+#### Read UXP file
 ```javascript
 /* output file name */
 const copy1Spec = "copy1.pdf";
@@ -263,7 +263,7 @@ if (authorized) {
 }
 ```
 
-#### Step 6: Handle Errors
+#### Handle Errors
 To check if there are any errors after each operation, we can use `uxpsys_hasError(handle)` method. It requires a handle as an input parameter.  If the operation is file related, we need to pass a file handle, otherwies it will be a callStatusHandle or other type of hanlde. (Handle for getting status of an operation);
 
 ````javascript

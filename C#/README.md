@@ -61,22 +61,22 @@ using SertaintySDK;
 
 ### Tutorial
 We will guide you through how to use Sertainty in your project. You will learn,
-  - [Initialize Sertainty](#Initialize-Sertainty)
-  - [Generate an ID file](#Generate-an-ID-file)
-  - [Protect file with UXP](#Protect-file-with-UXP)
-    - [Create UXP file](#Create-UXP-file)
-    - [Protect data](#Protect-data)
-  - [Authorize UXP](#Authorize-UXP)
-    - [Handle authorization](#Handle-authorization)
-    - [Handle challange response](#Handle-challange-response)
-  - [Read UXP file](#Read-UXP-file)
-  - [Handle Errors](#Handle-Errors)
+  - [Step 1: Initialize Sertainty](#Initialize-Sertainty)
+  - [Step 2: Generate an ID file](#Generate-an-ID-file)
+  - [Step 3: Protect file with UXP](#Protect-file-with-UXP)
+    - [Step 3.1: Create UXP file](#Create-UXP-file)
+    - [Step 3.2: Protect data](#Protect-data)
+  - [Step 4: Authorize UXP](#Authorize-UXP)
+    - [Step 4.1: Handle authorization](#Handle-authorization)
+    - [Step 4.2: Handle challange response](#Handle-challange-response)
+  - [Step 5: Read UXP file](#Read-UXP-file)
+  - [Step 6: Handle Errors](#Handle-Errors)
 
 Create sample project and import Sertainty. (Please refer [Usage](#Usage) section)
 
 See the full example [here.](https://github.com/sertainty/Sertainty-Wrappers/blob/master/C%23/examples/sampleProgram.cs)
 
-Get the sample files we are using for the tutorial [here.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/C%23/examples)
+Get the sample files we are using for the tutorial in [examples.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/C%23/examples)
 
 #### Initialize Sertainty 
 ```csharp
