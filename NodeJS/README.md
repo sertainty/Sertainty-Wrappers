@@ -64,9 +64,9 @@ We will guide you through how to use Sertainty in your project. You will learn,
 
 Create sample project and import Sertainty. (Please refer [Usage](#Usage) section)
 
-See the full example [here.](https://gist.github.com/arunwij/867f49a8ceea04e9e0fed352745dfc4c)
+See the full example [here.](https://github.com/sertainty/Sertainty-Wrappers/blob/master/NodeJS/examples/sampleApp.js)
 
-Get the sample files we are using for the tutorial [here.]()
+Get the sample files we are using for the tutorial [here.](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS/examples)
 
 #### Step 1: Initialize Sertainty
 ```javascript

@@ -3,6 +3,6 @@
 
 This is the official SDKs for Sertainty; Which provides functionality for generating ID files and protect data and control access.
 
-- [Getting Started with NodeJS](https://github.com/sertainty/Sertainty-Wrappers/blob/master/NodeJS/README.md)
+- [Getting Started with NodeJS](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS)
 - [Getting Started with C#](https://github.com/sertainty/Sertainty-Wrappers/tree/master/C%23)
 - [Contact Us](https://www.sertainty.com/)
