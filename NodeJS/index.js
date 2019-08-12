@@ -7,11 +7,11 @@ if(process.platform !== "win32") {
 const core = require('./sertainty-core');
 const types = require('./constants');
 const utils = require('./utils');
-const sertainty = require('./sertainty');
+//const sertainty = require('./sertainty');
 
 module.exports = {
   core,
   types,
   utils,
-  sertainty
+  //sertainty
 };
