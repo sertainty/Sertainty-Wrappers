@@ -6,11 +6,12 @@
     <Authors>Aruna Wijerathna</Authors>
     <Description>.Net wrapper for Sertainty SDK.</Description>
     <Company>Deep Data Insight</Company>
-    <RepositoryType></RepositoryType>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>Sertainty SDK</PackageTags>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageId>SertaintySDK</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
+    <RepositoryUrl>https://github.com/sertainty/Sertainty-Wrappers/tree/master/C%23</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

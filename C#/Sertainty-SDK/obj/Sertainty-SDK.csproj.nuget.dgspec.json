@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "restore": {
         "projectUniqueName": "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj",
         "projectName": "SertaintySDK",
@@ -17,7 +17,7 @@
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/mymac/.config/NuGet/NuGet.Config"
+          "/Users/mymac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"

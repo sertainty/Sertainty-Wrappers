@@ -51,7 +51,8 @@ This is the official C# SDK for Sertainty; Which provides functionality for gene
     Example: `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
 
 ### License
-You will be able to Install the License with Sertainty Tools or try it free.
+
+You can Install the License with Sertainty Tools or try it free. [Contact us](https://www.sertainty.com/).
 
 ### Usage
 ```csharp

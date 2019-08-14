@@ -7,8 +7,8 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Sertainty-SDK" expanded="True" selected="True">
-            <Node name="Sertainty-SDK" expanded="True" />
+          <Node name="Sertainty-SDK" expanded="True">
+            <Node name="Sertainty-SDK" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -3,6 +3,7 @@
 
 - [Getting Started with Sertainty](#getting-started-with-sertainty)
     - [Installing](#installing)
+    - [License](#license)
     - [Usage](#usage)
     - [Tutorial](#tutorial)
 - [API reference](#api-reference)
@@ -40,6 +41,10 @@ Currently we support Windows only.
     `setx SERTAINTY_HOME /M "path\to\sertainty"`
   
     Example: `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"` 
+
+### License
+
+You can Install the License with Sertainty Tools or try it free. [Contact us](https://www.sertainty.com/).
 
 ### Usage
 ```javascript
