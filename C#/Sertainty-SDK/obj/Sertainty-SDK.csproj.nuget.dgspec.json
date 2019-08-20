@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj": {
-      "version": "1.0.3",
+      "version": "1.0.4",
       "restore": {
         "projectUniqueName": "/Users/mymac/Other/sertainity/publish/C#/Sertainty-SDK/Sertainty-SDK.csproj",
         "projectName": "SertaintySDK",
