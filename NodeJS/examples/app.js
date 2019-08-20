@@ -1,38 +1,10 @@
-const { core, utils, types: { MODE, AUTHORIZATION_STATUS } } = require("@sertainty-eng/sertainty-sdk");
+const { 
+  core, 
+  utils, 
+  types: { MODE, AUTHORIZATION_STATUS } 
+} = require("@sertainty-eng/sertainty-sdk");
 const readlineSync = require("readline-sync");
 const fs = require("fs");
-
-// get the response for a challange question
-const getResponse = function getResponse(challengeHandle) {
-  const promptHandle = core.uxpba_newHandle();
-  core.uxpch_getPrompt(challengeHandle, promptHandle);
-  core.uxpch_startTimer(challengeHandle);
-  const dataHandle = core.uxpba_getData(promptHandle);
-  const question = utils.readAsString(dataHandle);
-  const answer = readlineSync.question(`${question}? `);
-  const trimmedAnsewer = answer.trim();
-  core.uxpch_endTimer(challengeHandle);
-  core.uxpch_setValueString(challengeHandle, trimmedAnsewer);
-  core.uxpba_freeHandle(promptHandle);
-};
-
-const getError = function getError(callStatusHandle) {
-  const errorHandle = core.uxpsys_getErrorMessage(callStatusHandle);
-  const errorText = utils.readAsString(errorHandle);
-  return errorText;
-};
-
-const isEndOfFile = function isEndOfFile(appHandle, fileHandle, bufferHandle) {
-  const readLength = 1000;
-  const dataLength = core.uxpfile_readVirtualFile(
-    appHandle,
-    fileHandle,
-    bufferHandle,
-    readLength
-  );
-  return dataLength > 0;
-};
-
 
 // handles
 let error = null;
@@ -45,12 +17,12 @@ const version = "1.000";
 const licenseFile = "sertainty.lic";
 const appKey = "SertintyONE";
 
-// source paths
+// input files
 const idXmlSpec = "sampleid.xml";
 const dataPdfSpec = 'data.pdf';
 const dataPdf2Spec = 'data2.pdf';
 
-// destination paths
+// these files will be generated when program running
 const copy1Spec = "copy1.pdf";
 const copy2Spec = "copy2.pdf";
 const idFileSpec = "sampleid.iic";
@@ -64,18 +36,17 @@ var bufferHandle = core.uxpba_newHandle();
 // handle for getting function status after calling them
 var callStatusHandle = core.uxpsys_newCallStatusHandle();
 
-// setting logging config
 core.uxpsys_setLogFile(prefix, version);
 
 // initialize sertainty
 const ret = core.uxpsys_initLibrary(bufferHandle, 0, [], licenseFile, appKey, prefix, version);
 
+// check for initialization errors
 if (ret === 0) {
-  // if there is any issue with initializing
+
   const errText = getError(callStatusHandle);
   console.error("Error initializing environment: ", errText);
 } else {
-  // app initialized successfully
   console.log("core initialized");
   core.uxpsys_fileReadAll(callStatusHandle, idXmlSpec, bufferHandle);
   error = core.uxpsys_hasError(callStatusHandle);
@@ -85,9 +56,7 @@ if (ret === 0) {
     const errText = getError(callStatusHandle);
     console.log("uxpfileReadAll: ", errText);
   } else {
-    // read id xml file
     console.log("{0} read", idXmlSpec);
-    // create the doc in memory
     const dataHandle = core.uxpba_getData(bufferHandle);
     const doc = utils.readAsString(dataHandle);
 
@@ -95,12 +64,10 @@ if (ret === 0) {
     core.uxpid_publishToFile(callStatusHandle, idFileSpec, doc, 1);
 
     error = core.uxpsys_hasError(callStatusHandle);
-    // check if there is any error in publishToFile method
     if (error) {
       const errText = getError(callStatusHandle);
       console.error("publishToFile: ", errText);
     } else {
-      //
       console.log("{0} created", idFileSpec);
 
       // get the uxp file handle
@@ -173,10 +140,10 @@ if (ret === 0) {
                 console.log(`Comparison of data.pdf to copy1.pdf: failed`);
               }
 
-              //Close the UXP. This will delete the handle as well
+              // close the UXP. This will delete the handle as well
               core.uxpfile_close(appHandle);
 
-              //Reopen the Data ... includes authentication
+              // reopen the Data ... includes authentication
               console.log("Opening new Data");
 
               core.uxpfile_openFile(appHandle, uxpFileSpec, MODE.ReadOnly);
@@ -279,3 +246,36 @@ if (ret === 0) {
     console.log("******************** Sample finished *********************");
   }
 }
+
+// read file untill it's ended
+function isEndOfFile(appHandle, fileHandle, bufferHandle) {
+  const readLength = 1000;
+  const dataLength = core.uxpfile_readVirtualFile(
+    appHandle,
+    fileHandle,
+    bufferHandle,
+    readLength
+  );
+  return dataLength > 0;
+};
+
+// read error from handle
+function getError(handle) {
+  const errorHandle = core.uxpsys_getErrorMessage(handle);
+  const errorText = utils.readAsString(errorHandle);
+  return errorText;
+};
+
+// get the response for a challange question
+function getResponse(challengeHandle) {
+  const promptHandle = core.uxpba_newHandle();
+  core.uxpch_getPrompt(challengeHandle, promptHandle);
+  core.uxpch_startTimer(challengeHandle);
+  const dataHandle = core.uxpba_getData(promptHandle);
+  const question = utils.readAsString(dataHandle);
+  const answer = readlineSync.question(`${question}? `);
+  const trimmedAnsewer = answer.trim();
+  core.uxpch_endTimer(challengeHandle);
+  core.uxpch_setValueString(challengeHandle, trimmedAnsewer);
+  core.uxpba_freeHandle(promptHandle);
+};
