@@ -2,9 +2,9 @@
   "name": "sertainty-examples",
   "version": "1.0.0",
   "description": "Example app of Sertainty SDK ",
-  "main": "sampleApp.js",
+  "main": "app.js",
   "scripts": {
-    "start": "npm run clean && node app.js"
+    "start": "node app.js"
   },
   "keywords": [
     "sertainty",
@@ -14,7 +14,7 @@
   "author": "aruna@deepdatainsight.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/deepdatainsight/sertainty-examples/issues"
+    "url": "https://github.com/sertainty/Sertainty-Wrappers/issues"
   },
   "dependencies": {
     "@sertainty-eng/sertainty-sdk": "^1.0.0",
