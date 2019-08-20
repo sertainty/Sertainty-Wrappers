@@ -18,7 +18,6 @@ Sertainty SDK helps to protect and encrypt your data and share secure manner. It
         - [Protect data](#protect-data)
       - [Access protected data](#access-protected-data)
       - [Files](#files)
-  - [[See the full example]()](#see-the-full-example)
 
 ## How to run the code
 
@@ -224,11 +223,3 @@ We use different files to run this examples. We'll see what they are.
 - `sampleid.xml` - This file used to generate `sampleid.iic`. Contains random challenge question and answers.
 - `sampleid.iic` - Act as a digital id for the user of this application. Can be shared with other parties.
 - `sample.uxp` - Uxp files are protected data. In order to protect data for intended recipiant you need the recipient's `id(.iic)` file and the data to be protected. 
-
- 
-
-
-
-## [See the full example]()
-
-
