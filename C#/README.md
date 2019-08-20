@@ -5,40 +5,40 @@ Sertainty SDK helps to protect and encrypt your data and share secure manner. It
 
 - [Sertainty SDK](#sertainty-sdk)
   - [How to run the code](#how-to-run-the-code)
-      - [Step 1: Get the Sertainty license](#step-1-get-the-sertainty-license)
-      - [Step 2: Get the code](#step-2-get-the-code)
-      - [Step 3: Configure development environment](#step-3-configure-development-environment)
-      - [Step 4: Run the code](#step-4-run-the-code)
+    - [Step 1: Get the Sertainty license](#step-1-get-the-sertainty-license)
+    - [Step 2: Get the code](#step-2-get-the-code)
+    - [Step 3: Configure development environment](#step-3-configure-development-environment)
+    - [Step 4: Run the code](#step-4-run-the-code)
   - [Walkthrough](#walkthrough)
-      - [Initialize sertainty](#initialize-sertainty)
-      - [Generate an ID file](#generate-an-id-file)
-      - [Generate UXP and protect data](#generate-uxp-and-protect-data)
-        - [Generate UXP file](#generate-uxp-file)
-        - [Protect data](#protect-data)
-      - [Access protected data](#access-protected-data)
-      - [Files](#files)
+    - [Initialize sertainty](#initialize-sertainty)
+    - [Generate an ID file](#generate-an-id-file)
+    - [Generate UXP and protect data](#generate-uxp-and-protect-data)
+      - [Generate UXP file](#generate-uxp-file)
+      - [Protect data](#protect-data)
+    - [Access protected data](#access-protected-data)
+    - [Files](#files)
 
 ## How to run the code
 
-#### Step 1: Get the Sertainty license
+### Step 1: Get the Sertainty license
 You need to have the latest Sertainty Tools and the Sertainty license for running this tutorial. 
 
 Please contact us through `tech-support@sertainty.com`
 
-#### Step 2: Get the code 
+### Step 2: Get the code 
 - Clone this repository with 
    `git clone https://github.com/sertainty/Sertainty-Wrappers.git`
 
 - or Download the Zip
 
-#### Step 3: Configure development environment
+### Step 3: Configure development environment
 We reference necessary files from Sertainty Tools.
 
 Set the install location of the Seratainty Tools using __SERTAINTY_HOME__ system environmental variable.
 
 `setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"`
 
-#### Step 4: Run the code
+### Step 4: Run the code
 You can install [SertaintySDK](https://www.nuget.org/packages/SertaintySDK/) using one of these methods.
 
 1. From Visual Studio 
@@ -72,7 +72,7 @@ You can install [SertaintySDK](https://www.nuget.org/packages/SertaintySDK/) usi
 
 In this example we are using Sertainty Technology to generate digital id and protect data using that id. We also demonstrate how to access protected data with authentication process. 
 
-#### Initialize sertainty
+### Initialize sertainty
 You need to initialize sertainty sdk with valid licenseFile and appKey before using it. 
 
 ```csharp
@@ -95,7 +95,7 @@ if (status == 0)
 Console.WriteLine("Sertainty initialized successfully");
 ```
 
-#### Generate an ID file
+### Generate an ID file
 See the `sampleid.xml` file in the examples directory. Open this and go through it. It contains application related data and challenge questions and answers.
 
 This is private for each user of the Sertainty SDK. You need this file to generate an digital id(.iic) for each user.
@@ -135,12 +135,12 @@ else
 }
 ```
 
-#### Generate UXP and protect data
+### Generate UXP and protect data
 We'll create a file with .uxp extension that can encapsulate data in encrypted mode. This function requires two main inputs,
 - Data(to be encrypted)
 - ID(.iic) file
 
-##### Generate UXP file
+#### Generate UXP file
 ```csharp
 /* a file to be encrypted */
 string dataPdfSpec = "data.pdf";
@@ -162,7 +162,7 @@ if (SertaintyCore.uxpsys_hasError(appHandle))
 Console.WriteLine("{0} created", uxpFileSpec);
 ```
 
-##### Protect data
+#### Protect data
 ```csharp
 SertaintyCore.uxpfile_addVirtualFromFile(appHandle, "data.pdf", dataPdfSpec, -1, -1, 8);
   
@@ -176,7 +176,7 @@ if (SertaintyCore.uxpsys_hasError(appHandle))
 Console.WriteLine("File has been Encrypted");
 ```
 
-#### Access protected data
+### Access protected data
 You need to pass the authorization before accessing the data. Application will provide randomize challenge questions based on the ID(.iic) file and user need to answer them within limited time.
 
 ```csharp
@@ -224,7 +224,7 @@ while (!done)
 }
 ```
 
-#### Files
+### Files
 We use different files to run this examples. We'll see what they are. 
 - `sampleid.xml` - This file used to generate `sampleid.iic`. Contains random challenge question and answers.
 - `sampleid.iic` - Act as a digital id for the user of this application. Can be shared with other parties.
