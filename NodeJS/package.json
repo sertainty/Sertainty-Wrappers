@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS"
   },
   "keywords": [
     "sertainty",
@@ -18,9 +18,9 @@
   "author": "aruna@deepdatainsight.com",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/sertainty/Sertainty-Wrappers/issues"
   },
-  "homepage": "",
+  "homepage": "https://www.sertainty.com/",
   "dependencies": {
     "@arunwij/read-bytes": "^1.0.4",
     "bindings": "^1.5.0",
