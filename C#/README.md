@@ -33,13 +33,13 @@ git clone https://github.com/sertainty/Sertainty-Wrappers.git
 or [download it as a zip file](https://github.com/sertainty/Sertainty-Wrappers/archive/master.zip)
 
 ### Step 3: Configure the Development Environment
-So that the Sertainty Tools can be found, set the install location of the Sertainty Tools using `SERTAINTY_HOME` system environment variable.
+So that the Sertainty Tools can be found, set the install location of the Sertainty Tools using the `SERTAINTY_HOME` system environment variable.
 
 `setx SERTAINTY_HOME /M "%ProgramFiles%\Sertainty"`
 
 ### Step 4: Install the Sertainty SDK
 
-You can install [the Sertainty SDK](https://www.nuget.org/packages/SertaintySDK/) using any of the following methods:
+You can install [SertaintySDK](https://www.nuget.org/packages/SertaintySDK/) using any of the following methods:
 
 1. From Visual Studio:
   - Right click on your Visual Studio project in the Solution Explorer. 
