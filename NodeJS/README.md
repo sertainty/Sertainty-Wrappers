@@ -22,9 +22,7 @@ The Sertainty SDK helps to protect, encrypt, and share your data securely. Autho
 **Note: this guide is for Windows**
 
 ### Step 1: Get the Sertainty License
-You need to have the latest Sertainty Tools and a Sertainty license to run this tutorial. 
-
-Please contact us at `tech-support@sertainty.com`
+This tutorial requires the latest Sertainty Tools and a Sertainty license. Please contact `tech-support@sertainty.com` for help with this.
 
 ### Step 2: Get the Code 
 You may clone this repository: 
@@ -35,7 +33,7 @@ git clone https://github.com/sertainty/Sertainty-Wrappers.git
 or [download it as a zip file](https://github.com/sertainty/Sertainty-Wrappers/archive/master.zip)
 
 ### Step 3: Configure the Development Environment
-So that the Sertainty Tools can be found, set the install location of the Sertainty Tools using __SERTAINTY_HOME__ system environment variable.
+So that the Sertainty Tools can be found, set the install location of the Sertainty Tools using `SERTAINTY_HOME` system environment variable.
 
 `setx SERTAINTY_HOME /M "%ProgramFiles%\Sertainty"`
 
@@ -92,7 +90,7 @@ console.log("Sertainty initialized successfully");
 ```
 
 ### Generate an ID File
-See the `sampleid.xml` file in the examples directory. Open this and go through it. It contains application-related data and challenge questions and answers.
+See the `sampleid.xml` file in the `examples` directory. Open this and go through it. It contains application-related data and challenge questions and answers.
 
 This is private for each user of the Sertainty SDK. You need this file to generate a digital id (.iic) for each user.
 
