@@ -71,7 +71,7 @@ You need to initialize the Sertainty SDK with a valid `licenseFile` and `appKey`
 const bufferHandle = core.uxpba_newHandle();
 
 const licenseFile = "sertainty.lic";
-const appKey = "SertaintyONE";
+const appKey = "SertintyONE";
 const logPrefix = "sertainty-tutorial";
 const logVersion = "1.0";
 const args = [];

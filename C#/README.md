@@ -77,7 +77,7 @@ You need to initialize the Sertainty SDK with a valid `licenseFile` and `appKey`
 IntPtr bufferHandle = SertaintyCore.uxpba_newHandle();
 
 string licenseFile = "sertainty.lic";
-string appKey = "SertaintyONE";
+string appKey = "SertintyONE";
 string logPrefix = "sertainty-tutorial";
 string logVersion = "1.0";
 
