@@ -1,89 +1,84 @@
 # Sertainty SDK
 ![Sertainty logo](https://i.ibb.co/ngjkVxN/Screen-Shot-2018-12-11-at-4-39-35-PM.png)
 
-Sertainty SDK helps to protect and encrypt your data and share secure manner. It allows desired parties to access the data if they are authenticated from a challenge verification process.
+The Sertainty SDK helps to protect, encrypt, and share your data securely. Authorized individuals may access the data if they authenticate through a challenge verification process.
 
 - [Sertainty SDK](#sertainty-sdk)
-  - [How to run the code](#how-to-run-the-code)
-    - [Step 1: Get the Sertainty license](#step-1-get-the-sertainty-license)
-    - [Step 2: Get the code](#step-2-get-the-code)
-    - [Step 3: Configure development environment](#step-3-configure-development-environment)
-    - [Step 4: Install dependencies](#step-4-install-dependencies)
-    - [Step 5: Run the code](#step-5-run-the-code)
+  - [How to Run the Code](#how-to-run-the-code)
+    - [Step 1: Get the Sertainty License](#step-1-get-the-sertainty-license)
+    - [Step 2: Get the Code](#step-2-get-the-code)
+    - [Step 3: Configure the Development Environment](#step-3-configure-the-development-environment)
+    - [Step 4: Install the Dependencies](#step-4-install-the-dependencies)
+    - [Step 5: Run the Code](#step-5-run-the-code)
   - [Walkthrough](#walkthrough)
-    - [Initialize sertainty](#initialize-sertainty)
-    - [Generate an ID file](#generate-an-id-file)
-    - [Generate UXP and protect data](#generate-uxp-and-protect-data)
-      - [Generate UXP file](#generate-uxp-file)
-      - [Protect data](#protect-data)
-    - [Access protected data](#access-protected-data)
+    - [Initialize Sertainty](#initialize-sertainty)
+    - [Generate an ID File](#generate-an-id-file)
+    - [Generate a UXP and Protect Data](#generate-a-uxp-and-protect-data)
+    - [Access the Protected Data](#access-the-protected-data)
     - [Files](#files)
 
-## How to run the code
+## How to Run the Code
 
-### Step 1: Get the Sertainty license
-You need to have the latest Sertainty Tools and the Sertainty license for running this tutorial. 
+**Note: this guide is for Windows**
 
-Please contact us through `tech-support@sertainty.com`
+### Step 1: Get the Sertainty License
+This tutorial requires the latest Sertainty Tools and a Sertainty license. Please contact `tech-support@sertainty.com` for help with this.
 
-### Step 2: Get the code 
-- Clone this repository with 
-   `git clone https://github.com/sertainty/Sertainty-Wrappers.git`
+### Step 2: Get the Code 
+You may clone this repository: 
+```
+git clone https://github.com/sertainty/Sertainty-Wrappers.git
+```
 
-- or Download the Zip
+or [download it as a zip file](https://github.com/sertainty/Sertainty-Wrappers/archive/master.zip)
 
-### Step 3: Configure development environment
-We reference necessary files from Sertainty Tools.
+### Step 3: Configure the Development Environment
+So that the Sertainty Tools can be found, set the install location of the Sertainty Tools using the `SERTAINTY_HOME` system environment variable.
 
-Set the install location of the Seratainty Tools using __SERTAINTY_HOME__ system environmental variable.
+`setx SERTAINTY_HOME /M "%ProgramFiles%\Sertainty"`
 
-`setx SERTANITY_HOME /M "%ProgramFiles%\Sertainty"`
+### Step 4: Install the Dependencies 
+Install the following:
+1. [Python 2.x.x](https://www.python.org/downloads/release/python-272/) 
+2. [Node JS](https://nodejs.org/en/)
+3. [npm](https://www.npmjs.com/get-npm)
+4. [node-gyp](https://github.com/nodejs/node-gyp) (`npm install -g node-gyp`)
+5. [Windows Build Tools](https://www.npmjs.com/package/windows-build-tools) (`npm install -g --production windows-build-tools`)
 
-### Step 4: Install dependencies 
-1. You need to have [Node JS](https://nodejs.org/en/) and [npm](https://www.npmjs.com/get-npm) installed in your PC. 
-
-2. We use [node-gyp](https://github.com/nodejs/node-gyp) for buiding necessary addons:
-     - install [Python](https://www.python.org/downloads/release/python-272/) 2.x.x
-     - `npm install -g node-gyp`
-     - `npm install -g --production windows-build-tools`
-
-### Step 5: Run the code
+### Step 5: Run the Code
 1. `cd Sertainty-Wrappers/NodeJS/examples`
 2. `npm install`
 3. `npm start`
-4. Use these to answer the security questions you      get in the sample program. 
+4. Use the following credentials to authenticate within the sample program:
 
-    `Username: sampleuser@myemail.com`
-
-    `Challenge 1: Response 1`
-
-    `Challenge 2: Response 2`
-
-    `Challenge 3: Response 3`
-
-    ...........
-
-    `Challenge 10: Response 10`
+| Prompt       | Response               |
+| ------------ | ---------------------- |
+| Username     | sampleuser@myemail.com |
+| Challenge 1  | Response 1             |
+| Challenge 2  | Response 2             |
+| Challenge 3  | Response 3             |
+| ...          | ...                    |
+| Challenge 10 | Response 10            |
 
 ## Walkthrough
 
-In this example we are using Sertainty Technology to generate digital id and protect data using that id. We also demonstrate how to access protected data with authentication process. 
+In this example we are using Sertainty Technology to generate a digital id and protect data using that id. We also demonstrate how to access the protected data with the authentication process. 
 
-### Initialize sertainty
-You need to initialize sertainty sdk with valid licenseFile and appKey before using it. 
+### Initialize Sertainty
+You need to initialize the Sertainty SDK with a valid `licenseFile` and `appKey` before using it. 
 
 ```javascript
 const bufferHandle = core.uxpba_newHandle();
 
 const licenseFile = "sertainty.lic";
-const appKey = "SertaintyONE";
+const appKey = "SertintyONE";
 const logPrefix = "sertainty-tutorial";
 const logVersion = "1.0";
 const args = [];
 
 const status = core.uxpsys_initLibrary(bufferHandle, args.length, args, licenceFile, appKey, logPrefix, logVersion);
 
-/* make sure if Sertainty initialized correctly */
+/* make sure that Sertainty initialized correctly */
 
 if (status == 0) {
   const errHandle = core.uxpba_getData(bufferHandle);
@@ -94,10 +89,10 @@ if (status == 0) {
 console.log("Sertainty initialized successfully");
 ```
 
-### Generate an ID file
-See the `sampleid.xml` file in the examples directory. Open this and go through it. It contains application related data and challenge questions and answers.
+### Generate an ID File
+See the `sampleid.xml` file in the `examples` directory. Open this and go through it. It contains application-related data and challenge questions and answers.
 
-This is private for each user of the Sertainty SDK. You need this file to generate an digital id(.iic) for each user.
+This is private for each user of the Sertainty SDK. You need this file to generate a digital id (.iic) for each user.
 
 ```javascript
 /* XML id file generated from the sertainty application */
@@ -130,12 +125,12 @@ if (core.uxpsys_hasError(callStausHandle)) {
   console.log("${idFileSpec} created");
 }
 ```
-### Generate UXP and protect data
-We'll create a file with .uxp extension that can encapsulate data in encrypted mode. This function requires two main inputs,
-- Data(to be encrypted)
-- ID(.iic) file
+### Generate a UXP and Protect Data
+We'll create a UXP file (with a .uxp extension) which will encapsulate encrypted data. This function requires two main inputs:
+- the data to be encrypted
+- The ID (.iic) file
 
-#### Generate UXP file
+#### Generate a UXP File
 ```javascript
 /* a file to be encrypted */
 const dataPdfSpec = "data.pdf";
@@ -156,7 +151,7 @@ if (core.uxpsys_hasError(appHandle)) {
 }
 ```
 
-#### Protect data
+#### Protect Data
 ```csharp
 core.uxpfile_addVirtualFromFile(appHandle, "data.pdf", dataPdfSpec, -1, -1, 8);
   
@@ -166,11 +161,11 @@ if (core.uxpsys_hasError(appHandle)) {
     console.error("Error creating virtual file: ${errText}");
 }
 
-console.log("File has been Encrypted");
+console.log("File has been encrypted");
 ```
 
-### Access protected data
-You need to pass the authorization before accessing the data. Application will provide randomize challenge questions based on the ID(.iic) file and user need to answer them within limited time.
+### Access the Protected Data
+You need to pass the authorization before accessing the data. The application will provide random challenges based on the ID (.iic) file which the user will need to answer within a limited amount of time.
 
 ```javascript
 core.uxpfile_openFile(appHandle, uxpFileSpec, Mode.ReadOnly);
@@ -199,14 +194,14 @@ status = core.uxpfile_authenticate(appHandle);
         }
 
         case AUTHORIZATION_STATUS.Challenged: {
-            // get remaining challange count
-            const challangeCount = core.uxpfile_getChallengeCount(appHandle);
-            for (let i = 0; i < challangeCount; i++) {
-                const challangePtr = core.uxpfile_getChallenge(appHandle,i);
-                // print the challange question and wait for the user response and save the response
-                getResponse(challangePtr);
-                core.uxpfile_addResponse(appHandle, challangePtr);
-                core.uxpch_freeHandle(challangePtr);
+            // get remaining challenge count
+            const challengeCount = core.uxpfile_getChallengeCount(appHandle);
+            for (let i = 0; i < challengeCount; i++) {
+                const challengePtr = core.uxpfile_getChallenge(appHandle,i);
+                // print the challenge question and wait for the user response and save the response
+                getResponse(challengePtr);
+                core.uxpfile_addResponse(appHandle, challengePtr);
+                core.uxpch_freeHandle(challengePtr);
             }
           break;
         }
@@ -218,8 +213,9 @@ status = core.uxpfile_authenticate(appHandle);
     }
 }
 ```
+
 ### Files
-We use different files to run this examples. We'll see what they are. 
-- `sampleid.xml` - This file used to generate `sampleid.iic`. Contains random challenge question and answers.
-- `sampleid.iic` - Act as a digital id for the user of this application. Can be shared with other parties.
-- `sample.uxp` - Uxp files are protected data. In order to protect data for intended recipiant you need the recipient's `id(.iic)` file and the data to be protected. 
+The following files are used in the examples:
+- `sampleid.xml`: This is used to generate `sampleid.iic`. It contains random challenge question and answers.
+- `sampleid.iic`: This acts as a public digital id for the user.
+- `sample.uxp`: UXP files are protected data. In order to protect data for a recipient, you need the recipient's ID (.iic) file and the data to be protected. 

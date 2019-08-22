@@ -1,7 +1,7 @@
 # Sertainty Wrappers
 ![Sertainty logo](https://i.ibb.co/ngjkVxN/Screen-Shot-2018-12-11-at-4-39-35-PM.png)
 
-This is the official SDKs for Sertainty; Which provides functionality for generating ID files and protect data and control access.
+These are the official SDKs for Sertainty. They provide functionality for generating ID files, protecting data and controlling access.
 
 - [Getting Started with NodeJS](https://github.com/sertainty/Sertainty-Wrappers/tree/master/NodeJS)
 - [Getting Started with C#](https://github.com/sertainty/Sertainty-Wrappers/tree/master/C%23)
